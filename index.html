@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Smarter Now — Käytännön AI-opas</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1b3e;
+  --navy-mid:#12234f;
+  --teal:#1D9E75;
+  --teal-light:#5DCAA5;
+  --teal-bg:#E1F5EE;
+  --white:#ffffff;
+  --gray:#f7f8fa;
+  --border:#e2e8f0;
+  --text:#0d1b3e;
+  --muted:#5a6a82;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);line-height:1.6}
+
+/* NAV */
+nav{background:var(--navy);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;color:white;font-size:1rem;letter-spacing:0.02em}
+.nav-logo span{color:var(--teal-light)}
+.nav-cta{background:var(--teal);color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;padding:10px 20px;border-radius:6px;text-decoration:none;transition:background 0.2s}
+.nav-cta:hover{background:#0F6E56}
+
+/* HERO */
+.hero{background:var(--navy);color:white;padding:5rem 2rem 6rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,rgba(29,158,117,0.15) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:rgba(29,158,117,0.2);color:var(--teal-light);font-size:11px;font-weight:500;padding:6px 16px;border-radius:20px;margin-bottom:2rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(93,202,165,0.3)}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;margin-bottom:1.5rem;max-width:750px;margin-left:auto;margin-right:auto}
+.hero h1 em{color:var(--teal-light);font-style:normal}
+.hero-sub{font-size:1.15rem;color:rgba(255,255,255,0.7);max-width:560px;margin:0 auto 2.5rem;font-weight:300;line-height:1.7}
+.hero-price-block{display:inline-flex;align-items:center;gap:1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:1rem 2rem;margin-bottom:2rem}
+.price-old{font-size:1rem;color:rgba(255,255,255,0.35);text-decoration:line-through}
+.price-new{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--teal-light)}
+.price-label{font-size:0.8rem;color:rgba(255,255,255,0.5);text-align:left;line-height:1.4}
+.hero-btn{display:inline-block;background:var(--teal);color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;padding:18px 40px;border-radius:10px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
+.hero-btn:hover{background:#0F6E56;transform:translateY(-1px)}
+.hero-note{font-size:12px;color:rgba(255,255,255,0.35);margin-top:1rem}
+
+/* SOCIAL PROOF STRIP */
+.proof-strip{background:var(--teal-bg);border-top:1px solid #9FE1CB;border-bottom:1px solid #9FE1CB;padding:1.25rem 2rem;text-align:center}
+.proof-strip p{font-size:0.9rem;color:#085041;font-weight:500}
+.proof-strip span{color:var(--teal)}
+
+/* PROBLEM */
+.section{padding:5rem 2rem;max-width:860px;margin:0 auto}
+.section-full{padding:5rem 2rem}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1rem;color:var(--navy)}
+.section-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:580px;margin-bottom:2.5rem}
+
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem}
+.problem-card{background:var(--gray);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.problem-card .x{font-size:20px;margin-bottom:0.75rem;color:#E24B4A}
+.problem-card h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;color:var(--navy)}
+.problem-card p{font-size:0.875rem;color:var(--muted);line-height:1.6}
+
+/* WHAT YOU GET */
+.gets-bg{background:var(--navy)}
+.gets-bg .eyebrow{color:var(--teal-light)}
+.gets-bg .section-title{color:white}
+.gets-bg .section-sub{color:rgba(255,255,255,0.55)}
+.gets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2rem}
+.gets-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.5rem}
+.gets-card .icon{font-size:1.5rem;margin-bottom:0.75rem}
+.gets-card h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:0.5rem}
+.gets-card p{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6}
+.gets-card ul{list-style:none;margin-top:0.5rem}
+.gets-card ul li{font-size:0.85rem;color:rgba(255,255,255,0.65);padding:3px 0;display:flex;align-items:flex-start;gap:8px}
+.gets-card ul li::before{content:'→';color:var(--teal-light);flex-shrink:0;margin-top:1px}
+
+/* FOR WHO */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+@media(max-width:600px){.who-grid{grid-template-columns:1fr}}
+.who-yes{background:var(--teal-bg);border:1px solid #9FE1CB;border-radius:12px;padding:1.5rem}
+.who-no{background:var(--gray);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.who-yes h3{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:#085041;margin-bottom:1rem}
+.who-no h3{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--muted);margin-bottom:1rem}
+.who-list{list-style:none}
+.who-list li{font-size:0.9rem;padding:5px 0;display:flex;gap:10px;align-items:flex-start}
+.who-yes .who-list li{color:#085041}
+.who-no .who-list li{color:var(--muted)}
+.check{color:var(--teal);font-weight:700;flex-shrink:0}
+.cross{color:#E24B4A;font-weight:700;flex-shrink:0}
+
+/* PROMPTS PREVIEW */
+.prompts-bg{background:var(--gray)}
+.prompt-list{display:flex;flex-direction:column;gap:0.75rem;margin-top:2rem}
+.prompt-item{background:white;border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1.25rem}
+.prompt-num{font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;color:var(--teal);background:var(--teal-bg);padding:5px 10px;border-radius:6px;min-width:36px;text-align:center;flex-shrink:0;margin-top:2px}
+.prompt-text h4{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+.prompt-text p{font-size:0.85rem;color:var(--muted)}
+
+/* CHALLENGE */
+.challenge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.day-card{border:1px solid var(--border);border-radius:10px;padding:1.25rem;position:relative}
+.day-num{font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem}
+.day-card h4{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--navy);margin-bottom:0.35rem}
+.day-card p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.faq-item{border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.faq-item h4{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem}
+.faq-item p{font-size:0.9rem;color:var(--muted);line-height:1.6}
+
+/* CTA SECTION */
+.cta-section{background:var(--navy);padding:6rem 2rem;text-align:center}
+.cta-section h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:white;margin-bottom:1rem}
+.cta-section p{font-size:1rem;color:rgba(255,255,255,0.6);max-width:480px;margin:0 auto 2.5rem;line-height:1.7}
+.cta-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:2.5rem;max-width:440px;margin:0 auto}
+.cta-includes{list-style:none;text-align:left;margin:1.5rem 0}
+.cta-includes li{font-size:0.9rem;color:rgba(255,255,255,0.75);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;gap:10px;align-items:center}
+.cta-includes li:last-child{border-bottom:none}
+.cta-includes li span{color:var(--teal-light)}
+.cta-price{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--teal-light);margin:1rem 0 0.25rem}
+.cta-price-old{font-size:0.9rem;color:rgba(255,255,255,0.3);text-decoration:line-through;margin-bottom:1.5rem}
+.cta-btn-large{display:block;background:var(--teal);color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;padding:18px 32px;border-radius:10px;text-decoration:none;transition:background 0.2s;text-align:center;width:100%}
+.cta-btn-large:hover{background:#0F6E56}
+.cta-guarantee{font-size:12px;color:rgba(255,255,255,0.3);margin-top:1rem}
+
+/* FOOTER */
+footer{background:#080f22;color:rgba(255,255,255,0.35);text-align:center;padding:2rem;font-size:0.8rem}
+footer strong{color:rgba(255,255,255,0.6);font-family:'Syne',sans-serif}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:0}
+
+@media(max-width:600px){
+  .hero{padding:3rem 1.25rem 4rem}
+  .section{padding:3.5rem 1.25rem}
+  .section-full{padding:3.5rem 1.25rem}
+  .hero-price-block{flex-direction:column;gap:0.5rem;text-align:center}
+  nav{padding:1rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Work Smarter <span>Now</span></div>
+  <a href="#osta" class="nav-cta">Hanki opas — €49</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Käytännön AI-opas · Matkailuala · Ravintola-ala · Elämysala</div>
+  <h1>Säästä 5–10 tuntia viikossa<br><em>tekoälyn avulla</em></h1>
+  <p class="hero-sub">15 valmista AI-promptia jotka toimivat heti. Tehty juuri ravintola-, matkailu- ja elämysalan yrittäjille. Ei teknistä osaamista tarvita.</p>
+  <div class="hero-price-block">
+    <span class="price-old">€97</span>
+    <span class="price-new">€49</span>
+    <div class="price-label">Elinikäinen pääsy<br>Ladattava PDF · Saatavilla heti</div>
+  </div>
+  <br><br>
+  <a href="#osta" class="hero-btn">Hanki opas nyt — €49 →</a>
+  <p class="hero-note">Saat oppaan heti maksun jälkeen sähköpostiisi</p>
+</div>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <p>Kaikki esimerkit matkailualan arjesta · <span>Ei teoriaa · Ei hypeä · Vain käytäntöä</span></p>
+</div>
+
+<!-- PROBLEM -->
+<div class="section">
+  <div class="eyebrow">Tunnistatko nämä?</div>
+  <h2 class="section-title">Digityö vie liikaa aikaa<br>— ja tulokset jäävät laihaksi</h2>
+  <p class="section-sub">Olet kokeillut tekoälyä. Ehkä saanut muutaman vastauksen. Mutta järjestelmällistä hyötyä ei ole syntynyt.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="x">✗</div>
+      <h3>Some-tekstit vievät tunteja</h3>
+      <p>Istut tyhjän ruudun edessä ja miettit mitä kirjoittaa — viikosta toiseen.</p>
+    </div>
+    <div class="problem-card">
+      <div class="x">✗</div>
+      <h3>Samat kysymykset toistuvat</h3>
+      <p>Aukioloajat, allergeenit, varaukset — kirjoitat saman vastauksen kymmenettä kertaa.</p>
+    </div>
+    <div class="problem-card">
+      <div class="x">✗</div>
+      <h3>ChatGPT antaa geneerisiä vastauksia</h3>
+      <p>Kokeilit mutta tulokset eivät tuntuneet omilta. Ongelma on promptissa — ei AI:ssa.</p>
+    </div>
+    <div class="problem-card">
+      <div class="x">✗</div>
+      <h3>Uusia asiakkaita on vaikea löytää</h3>
+      <p>Markkinointi tuntuu kalliilta ja monimutkaiselta ilman omaa digitiimiä.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHAT YOU GET -->
+<div class="section-full gets-bg">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div class="eyebrow">Mitä saat</div>
+    <h2 class="section-title">15 valmista promptia.<br>Käytät ne heti.</h2>
+    <p class="section-sub">Jokainen prompti on kirjoitettu valmiiksi matkailualan yritykselle. Kopioit, täytät omat tietosi, liität ChatGPT:hen.</p>
+    <div class="gets-grid">
+      <div class="gets-card">
+        <div class="icon">📱</div>
+        <h3>Sisällöntuotanto</h3>
+        <ul>
+          <li>Viikon Instagram-postaukset</li>
+          <li>TikTok-käsikirjoitus</li>
+          <li>Uutiskirje kuukaudessa</li>
+          <li>Palvelukuvaus verkkosivulle</li>
+          <li>Sesonkikampanjan teksti</li>
+        </ul>
+      </div>
+      <div class="gets-card">
+        <div class="icon">⭐</div>
+        <h3>Asiakaspalvelu</h3>
+        <ul>
+          <li>Vastaus positiiviseen arvosteluun</li>
+          <li>Vastaus negatiiviseen arvosteluun</li>
+          <li>FAQ-dokumentti kerran, käytä aina</li>
+          <li>Sähköpostikyselyihin vastaaminen</li>
+          <li>Monikielinen asiakasviesti</li>
+        </ul>
+      </div>
+      <div class="gets-card">
+        <div class="icon">🎯</div>
+        <h3>Asiakashankinta</h3>
+        <ul>
+          <li>Ihanneasiakkaan määrittely</li>
+          <li>Personoitu yhteydenotto</li>
+          <li>Follow-up-viesti</li>
+          <li>Yhteistyökumppanien kartoitus</li>
+        </ul>
+      </div>
+      <div class="gets-card">
+        <div class="icon">📦</div>
+        <h3>Tuotteistaminen</h3>
+        <ul>
+          <li>Uusi palvelupaketti</li>
+          <li>Lisämyyntimahdollisuudet</li>
+          <li>Sesonkituote</li>
+          <li>Arvostelujen analyysi</li>
+          <li>30 päivän toimintasuunnitelma</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<div class="section">
+  <div class="eyebrow">Bonus mukana</div>
+  <h2 class="section-title">7 päivän käyttöönottohaaste</h2>
+  <p class="section-sub">Jokainen tehtävä kestää maksimissaan 30 minuuttia. Seitsemän päivän jälkeen AI on osa päivittäistä työtäsi.</p>
+  <div class="challenge-grid">
+    <div class="day-card">
+      <div class="day-num">Päivä 1</div>
+      <h4>Luo tili ja kokeile</h4>
+      <p>Ensimmäinen prompti käytössä</p>
+    </div>
+    <div class="day-card">
+      <div class="day-num">Päivä 2</div>
+      <h4>Some-sisältö</h4>
+      <p>Viikon postaukset tehtyinä</p>
+    </div>
+    <div class="day-card">
+      <div class="day-num">Päivä 3</div>
+      <h4>Asiakaspalvelu</h4>
+      <p>Arvosteluihin vastattu</p>
+    </div>
+    <div class="day-card">
+      <div class="day-num">Päivä 4</div>
+      <h4>FAQ-dokumentti</h4>
+      <p>Toistuvat kysymykset hoidettu</p>
+    </div>
+    <div class="day-card">
+      <div class="day-num">Päivä 5</div>
+      <h4>Asiakashankinta</h4>
+      <p>Ihanneasiakas määritelty</p>
+    </div>
+    <div class="day-card">
+      <div class="day-num">Päivä 6</div>
+      <h4>Tuotteistaminen</h4>
+      <p>Uusi palvelupaketti luotu</p>
+    </div>
+    <div class="day-card">
+      <div class="day-num">Päivä 7</div>
+      <h4>Analyysi</h4>
+      <p>Arvostelut analysoitu, kehityskohde valittu</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOR WHO -->
+<div class="section">
+  <div class="eyebrow">Kenelle</div>
+  <h2 class="section-title">Tehty juuri sinulle —<br>jos pyörität matkailualan yritystä</h2>
+  <div class="who-grid">
+    <div class="who-yes">
+      <h3>✓ Sopii sinulle jos olet</h3>
+      <ul class="who-list">
+        <li><span class="check">✓</span> Matkailuyrittäjä, hotelli tai mökki</li>
+        <li><span class="check">✓</span> Ravintola tai kahvila</li>
+        <li><span class="check">✓</span> Aktiviteetti- tai ohjelmapalvelu</li>
+        <li><span class="check">✓</span> Safari- tai opaspalvelu</li>
+        <li><span class="check">✓</span> Tapahtuma- tai elämysyritys</li>
+        <li><span class="check">✓</span> Yrittäjä ilman omaa digitiimiä</li>
+      </ul>
+    </div>
+    <div class="who-no">
+      <h3>✗ Ei sovi jos olet</h3>
+      <ul class="who-list">
+        <li><span class="cross">✗</span> Suuri ketju jolla on oma digiasiantuntija</li>
+        <li><span class="cross">✗</span> Kiinnostunut teknisestä ohjelmoinnista</li>
+        <li><span class="cross">✗</span> Etsimässä pikavoittoja ilman työtä</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section-full" style="background:var(--gray)">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div class="eyebrow">Usein kysytyt</div>
+    <h2 class="section-title">Kysymykset ja vastaukset</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>Tarvitsenko teknistä osaamista?</h4>
+        <p>Et. Tarvitset vain ilmaisen ChatGPT-tilin joka on helppo luoda. Kaikki promptit on kirjoitettu valmiiksi — kopioit, täytät omat tietosi, liität.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Milloin saan oppaan?</h4>
+        <p>Heti maksun jälkeen. Saat sähköpostiisi latauslinkin automaattisesti.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Onko se saatavilla englanniksi?</h4>
+        <p>Tällä hetkellä suomeksi. Englanninkielinen versio on tulossa.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Toimiiko tämä juuri minun toimialallani?</h4>
+        <p>Jos pyörität ravintolaa, hotellia, mökkiä, aktiviteettiyritystä, safaripalvelua tai muuta matkailualan yritystä — kyllä. Kaikki esimerkit ovat näiltä toimialoilta.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Mitä jos ChatGPT:n ilmainen versio ei riitä?</h4>
+        <p>Ilmainen versio riittää kaikkiin tämän oppaan prompteihin. Maksullinen versio ei ole tarpeen.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="osta">
+  <h2>Aloita tänään</h2>
+  <p>15 valmista promptia. 7 päivän haaste. Säästät tunteja viikossa.</p>
+  <div class="cta-card">
+    <div style="font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;color:var(--teal-light);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem">Work Smarter Now</div>
+    <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:white;margin-bottom:1rem">Käytännön AI-opas</div>
+    <ul class="cta-includes">
+      <li><span>✓</span> 15 valmista AI-promptia</li>
+      <li><span>✓</span> 7 päivän käyttöönottohaaste</li>
+      <li><span>✓</span> Tarkistuslista</li>
+      <li><span>✓</span> Tietoturvaohje</li>
+      <li><span>✓</span> Elinikäinen pääsy + päivitykset</li>
+    </ul>
+    <div class="cta-price">€49</div>
+    <div class="cta-price-old">Norm. €97</div>
+    <a href="LISÄÄ_STRIPE_TAI_SYSTEME_LINKKI_TÄHÄN" class="cta-btn-large">Hanki opas nyt →</a>
+    <p class="cta-guarantee">Saat oppaan heti sähköpostiisi · Ladattava PDF</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Work Smarter Now</strong><br><br>
+  worksmartetnow.online · Käytännön AI-opas matkailu- ja ravintolayrityksille<br><br>
+  <a href="#" style="color:rgba(255,255,255,0.3);text-decoration:none">Tietosuoja</a> · 
+  <a href="#" style="color:rgba(255,255,255,0.3);text-decoration:none">Käyttöehdot</a>
+</footer>
+
+</body>
+</html>
